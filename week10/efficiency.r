@@ -2,7 +2,7 @@
 #
 # plotting the efficiency of functions
 
-setwd('/home/jburns/Scalable.Computing/week10')
+setwd('/home/mint/Scalable.Computing/week10')
 
 computeEff <- function(n) {
 	p <- c(1:32)
