@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <omp.h>
+#include <time.h>
+
+#define N 10
 
 int main (void)
 {
@@ -13,16 +16,19 @@ int main (void)
       printf("There are %d threads\n",nthreads);
     }
 
+    clock_t tic = clock();
+
+    //this is your work
     #pragma omp parallel for 
-    for(int j = 0; j < 10; j++) {
+    for(int j = 0; j < N; j++) {
       int tid = omp_get_thread_num();
-      printf("thread %d: i = %d\n", tid, j);
+      printf("thread %d: j = %d\n", tid, j);
     }
 
-    #pragma omp parallel firstprivate(q,t,r) 
-    {
-     printf("thread %d: q=%d, r=%d, t=%d\n", omp_get_thread_num(), q,t,r);
-    }
+    clock_t toc = clock();
+
+    printf("Elapsed: %f seconds\n", 
+      (double)(toc - tic) / CLOCKS_PER_SEC);
 
     return 0;
 }
