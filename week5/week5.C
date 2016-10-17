@@ -1,3 +1,6 @@
+/*
+ * comple with g++ -fopenmp week5.C
+ */
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -30,11 +33,15 @@ int main (int argc, char** argv) {
 
 	cntr = 0;
 
-	#pragma omp parallel 
+	//nested
+	omp_set_nested(1);
+
+	#pragma omp parallel num_threads(2)
 	{
-		if(!omp_get_thread_num()) {
-			int num_thr = omp_get_num_threads();
-			printf("MT threads: %d\n", num_thr);  
+		printf("thread id: %d\n", omp_get_thread_num());  
+		#pragma omp parallel for 
+		for(int i = 0; i < 4; i++){
+			printf("FOR thread id: %d\n", omp_get_thread_num());  
 		}
 	}
 
@@ -46,7 +53,6 @@ int main (int argc, char** argv) {
 	}
 
 	printf("MT result: %d\n", cntr);	
-
 	
 }
 
