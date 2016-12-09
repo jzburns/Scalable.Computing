@@ -40,13 +40,13 @@ computeS <- function(p, n) {
 m <- sapply(p, FUN=computeEff)
 rownames(m) <- n
 colnames(m) <- p
-matplot(main="Linear", rownames(m), m, type="b", log="x")
+matplot(main="Linear", rownames(m), m, ylab="E", xlab="n", type="b", log="x")
 
 x11()
 m <- sapply(p, FUN=computeEff2)
 rownames(m) <- n
 colnames(m) <- p
-matplot(main="Cubic", rownames(m), m, xlab="n", type="b", log="x")
+matplot(main="Cubic", rownames(m), m, ylab="E", xlab="n", type="b", log="x")
 
 #### plotting the overhead
 x11()
@@ -54,14 +54,14 @@ m <- sapply(p, FUN=computeOhead)
 rownames(m) <- n
 colnames(m) <- p
 # print(m)
-matplot(main="Linear", rownames(m), m, xlab="n", type="b", log="xy")
+matplot(main="Linear", rownames(m), m, xlab="n", ylab="To", type="b", log="xy")
 lines (n, n)
 
 x11()
 m <- sapply(p, FUN=computeOhead2)
 rownames(m) <- n
 colnames(m) <- p
-matplot(main="Cubic", rownames(m), m, xlab="n", type="b", log="xy")
+matplot(main="Cubic", rownames(m), m, xlab="n", ylab="To", type="b", log="xy")
 lines (n, n^3)
 
 
