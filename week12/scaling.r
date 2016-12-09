@@ -1,5 +1,9 @@
+# scaling equation of efficiency
+
+p <- 2^(0:12)
+n <- 2^(6:20)
+
 computeEff <- function(p) {
-	n <- 2^(6:20)
 	Ts <- n
 	Tp <-  n/p + (2 * log2(p))
 	To <- p*Tp - Ts
@@ -19,11 +23,8 @@ computeS <- function(p, n) {
 	S <- Ts / Tp
 }
 
-options(width=150)
-p <- 2^(0:14)
-n <- 2^(6:20)
 m <- sapply(p, FUN=computeEff)
 rownames(m) <- n
 colnames(m) <- p
-
 print(m)
+matplot(rownames(m), m, type="b", log="x")
