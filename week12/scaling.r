@@ -21,4 +21,9 @@ computeS <- function(p, n) {
 
 options(width=150)
 p <- 2^(0:14)
-print(sapply(p, FUN=computeEff))
+n <- 2^(6:20)
+m <- sapply(p, FUN=computeEff)
+rownames(m) <- n
+colnames(m) <- p
+
+print(m)
